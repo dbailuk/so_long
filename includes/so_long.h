@@ -1,7 +1,7 @@
 #ifndef SO_LONG_H
 #define SO_LONG_H
 
-# define SIZE	32
+# define SIZE	64
 
 // Keys for linux
 # define KEY_UP		65362
