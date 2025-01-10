@@ -16,6 +16,8 @@ char	*ft_strrchr(const char *s, int c)
 {
 	const char	*last;
 
+	if (!s)
+		return (NULL);
 	last = NULL;
 	while (*s)
 	{
@@ -27,11 +29,3 @@ char	*ft_strrchr(const char *s, int c)
 		return ((char *)s);
 	return ((char *)last);
 }
-
-/*int	main()
-{
-	char *s = "HeNll NawNo";
-	int c = 'N';
-	char *r = ft_strrchr(s, c);
-	printf("%s", r);
-}*/

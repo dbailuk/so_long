@@ -14,6 +14,8 @@
 
 char	*ft_strchr(const char *s, int c)
 {
+	if (!s)
+		return (NULL);
 	while (*s)
 	{
 		if (*s == (char)c)
@@ -24,11 +26,3 @@ char	*ft_strchr(const char *s, int c)
 		return ((char *)s);
 	return (NULL);
 }
-
-/*int	main()
-{
-	char *s = "Hell Nahhh";
-	int c = 'N';
-	char *r = ft_strchr(s, c);
-	printf("%s", r);
-}*/

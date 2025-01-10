@@ -10,71 +10,69 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/get_next_line.h"
+#include "includes/libft.h"
+
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 10
+#endif
 
 static char	*ft_read_before_newline(int fd, char *storage)
 {
-	ssize_t	bytes_read;
-	char	*buffer;
+	char	*buf;
+	ssize_t	br;
 
-	buffer = malloc(BUFFER_SIZE + 1);
-	if (!buffer)
+	if (!storage)
+		storage = ft_calloc(1, 1);
+	if (!storage)
 		return (NULL);
-	bytes_read = 1;
-	while (!ft_strchr(storage, '\n') && bytes_read > 0)
+	buf = malloc(BUFFER_SIZE + 1);
+	if (!buf)
+		return (free(storage), NULL);
+	br = 1;
+	while (!ft_strchr(storage, '\n') && br > 0)
 	{
-		bytes_read = read(fd, buffer, BUFFER_SIZE);
-		if (bytes_read == -1)
-		{
-			free(buffer);
-			free(storage);
-			return (NULL);
-		}
-		buffer[bytes_read] = '\0';
-		storage = ft_strjoin(storage, buffer);
+		br = read(fd, buf, BUFFER_SIZE);
+		if (br == -1)
+			return (free(buf), free(storage), NULL);
+		buf[br] = '\0';
+		storage = ft_strjoin(storage, buf);
+		if (!storage)
+			return (free(buf), NULL);
 	}
-	free(buffer);
-	return (storage);
+	return (free(buf), storage);
 }
 
 static char	*ft_extract_line(char *storage)
 {
-	size_t	len;
+	size_t	i;
 	char	*line;
 
 	if (!storage || !*storage)
-	{
 		return (NULL);
-	}
-	len = 0;
-	while (storage[len] && storage[len] != '\n')
-		len++;
-	if (storage[len] == '\n')
-		len++;
-	line = ft_substr(storage, 0, len);
+	i = 0;
+	while (storage[i] && storage[i] != '\n')
+		i++;
+	if (storage[i] == '\n')
+		i++;
+	line = ft_substr(storage, 0, i);
 	return (line);
 }
 
 static char	*ft_update_storage(char *storage)
 {
-	char	*new_storage;
-	size_t	len;
+	size_t	i;
+	char	*new_st;
 
-	len = 0;
-	while (storage[len] && storage[len] != '\n')
-		len++;
-	if (!storage[len])
-	{
-		free(storage);
+	i = 0;
+	while (storage[i] && storage[i] != '\n')
+		i++;
+	if (!storage[i])
+		return (free(storage), NULL);
+	new_st = ft_strdup(storage + i + 1);
+	free(storage);
+	if (!new_st)
 		return (NULL);
-	}
-	new_storage = ft_strdup(storage + len + 1);
-	free (storage);
-	if (!new_storage)
-	{
-		return (NULL);
-	}
-	return (new_storage);
+	return (new_st);
 }
 
 char	*get_next_line(int fd)

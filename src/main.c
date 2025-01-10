@@ -1,27 +1,28 @@
 #include "../includes/so_long.h"
 
-static void	print_usage(void)
+void error_exit(char *msg)
 {
-	ft_putstr_fd("Correct arguments: ./so_long <map.ber>\n", 2);
+    ft_putstr_fd("Error\n", 2);
+    ft_putstr_fd(msg, 2);
+    ft_putstr_fd("\n", 2);
+    exit(EXIT_FAILURE);
 }
 
-int	main(int argc, char **argv)
+int main(int argc, char **argv)
 {
-	t_game	game;
+    t_game game;
 
-	if(argc != 2)
-	{
-		print_usage();
-		return (1);
-	}
-	ft_bzero(&game, sizeof(t_game));
-	read_map(argv[1], &game.map);
-	validate_map(&game.map);
-	init_game(&game);
-	load_icons(&game);
-	render_map(&game);
-	hook_events(&game);
-	mlx_loop(game.mlx);
-	free_resorces(&game);
-	return (0);
+    if (argc != 2)
+        error_exit("Usage: ./so_long map.ber");
+    ft_bzero(&game, sizeof(t_game));
+    parse_map(argv[1], &game);
+    check_map(&game);
+    if (!is_path_valid(&game))
+        error_exit("No valid path to collect all items & reach exit.");
+    init_game(&game);
+    render_map(&game);
+    mlx_hook(game.win, 2, 1L<<0, handle_keypress, &game);
+    mlx_hook(game.win, 17, 0, close_game, &game);
+    mlx_loop(game.mlx);
+    return (0);
 }
