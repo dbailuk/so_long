@@ -10,6 +10,15 @@ static void count_items(char c, t_map *map)
         map->count_p++;
 }
 
+static void strip_newline(char *line)
+{
+    int len = ft_strlen(line);
+    if (len > 0 && (line[len - 1] == '\n' || line[len - 1] == '\r'))
+    {
+        line[len - 1] = '\0';
+    }
+}
+
 static void read_map_lines(int fd, t_map *map)
 {
     char    *line;
@@ -20,6 +29,7 @@ static void read_map_lines(int fd, t_map *map)
     map->grid = NULL;
     while ((line = get_next_line(fd)))
     {
+        strip_newline(line);
         i = 0;
         tmp = map->grid;
         map->grid = ft_calloc(map->height + 2, sizeof(char *));
@@ -42,7 +52,7 @@ void parse_map(char *file, t_game *game)
 
     fd = open(file, O_RDONLY);
     if (fd < 0)
-        return ; // handle error in your style
+        return ;
     read_map_lines(fd, &game->map);
     close(fd);
     game->map.width = (int)ft_strlen(game->map.grid[0]);
