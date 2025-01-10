@@ -6,7 +6,7 @@
 /*   By: dbailuk <dbailuk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:33:32 by dbailuk           #+#    #+#             */
-/*   Updated: 2025/01/10 13:40:58 by dbailuk          ###   ########.fr       */
+/*   Updated: 2025/01/10 14:36:57 by dbailuk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ static void	read_map_lines(int fd, t_map *map)
 
 	map->height = 0;
 	map->grid = NULL;
-	while ((line = get_next_line(fd)))
+	line = get_next_line(fd);
+	while (line)
 	{
 		strip_newline(line);
 		i = 0;
@@ -54,6 +55,7 @@ static void	read_map_lines(int fd, t_map *map)
 		map->grid[i] = line;
 		free(tmp);
 		map->height++;
+		line = get_next_line(fd);
 	}
 }
 
