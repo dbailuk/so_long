@@ -6,7 +6,7 @@
 /*   By: dbailuk <dbailuk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:33:44 by dbailuk           #+#    #+#             */
-/*   Updated: 2025/01/10 13:42:55 by dbailuk          ###   ########.fr       */
+/*   Updated: 2025/01/10 13:54:01 by dbailuk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	move_player(t_game *g, int nx, int ny)
 	g->px = nx;
 	g->py = ny;
 	g->moves++;
-	printf("GAMELOOP35 Moves: %d\n", g->moves);
+	ft_printf("Moves: %d\n", g->moves);
 	if (g->map.grid[ny][nx] == 'E' && g->map.count_c == 0)
 		close_game(g);
 }

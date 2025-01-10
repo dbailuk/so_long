@@ -17,6 +17,7 @@
 # include "../extra_libs/mlx/mlx.h"
 # include "../extra_libs/mlx/mlx_int.h"
 # include "../extra_libs/libft_gnl/includes/libft.h"
+# include "../extra_libs/ft_printf/ft_printf.h"
 
 # include <stddef.h>
 # include <stdlib.h>
