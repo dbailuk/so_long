@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   game_init.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dbailuk <dbailuk@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/10 13:33:48 by dbailuk           #+#    #+#             */
+/*   Updated: 2025/01/10 13:42:40 by dbailuk          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/so_long.h"
 
 static void	load_textures(t_game *game)
@@ -15,12 +27,16 @@ static void	load_textures(t_game *game)
 		error_exit("Failed to load floor texture.");
 	game->tex_player = mlx_xpm_file_to_image(game->mlx,
 			"textures/player.xpm", &w, &h);
+	if (!game->tex_player)
+		error_exit("Failed to load textures/player.xpm");
 	game->tex_collect = mlx_xpm_file_to_image(game->mlx,
 			"textures/collect.xpm", &w, &h);
+	if (!game->tex_collect)
+		error_exit("Failed to load textures/collect.xpm");
 	game->tex_exit = mlx_xpm_file_to_image(game->mlx,
 			"textures/exit.xpm", &w, &h);
-	if (!game->tex_player || !game->tex_collect || !game->tex_exit)
-		error_exit("Failed to load one of the textures.");
+	if (!game->tex_exit)
+		error_exit("Failed to load textures/exit.xpm");
 }
 
 void	init_game(t_game *game)
