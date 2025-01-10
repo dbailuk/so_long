@@ -28,7 +28,6 @@ LIBFT       = $(LIBFT_DIR)/libft.a
 MLX         = $(MLX_DIR)/libmlx.a
 
 # On Linux, often you need: -lXext -lX11 -lm
-# Adjust if your distro or environment differs.
 MLX_FLAGS   = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 
 all: $(NAME)
