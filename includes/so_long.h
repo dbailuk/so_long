@@ -28,6 +28,13 @@
 # include <string.h>
 # include <stdarg.h>
 
+typedef struct s_path
+{
+	int	**visited;
+	int	found_c;
+	int	found_e;
+}	t_path;
+
 typedef struct s_map
 {
     char    **grid;       // 2D array of map chars
