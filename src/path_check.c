@@ -1,12 +1,5 @@
 #include "../includes/so_long.h"
 
-/*
-** dfs_util - recursively visits cells to see if we can reach all Cs and E.
-** - g: our main game struct
-** - y, x: current cell
-** - v: visited array
-** - fc, fe: pointers to counters (found_collectibles, found_exit)
-*/
 static void dfs_util(t_game *g, int y, int x, int **v, int *fc, int *fe)
 {
     int         i;
@@ -26,10 +19,6 @@ static void dfs_util(t_game *g, int y, int x, int **v, int *fc, int *fe)
         dfs_util(g, y + d[i][0], x + d[i][1], v, fc, fe);
 }
 
-/*
-** is_path_valid - allocates visited array, calls dfs_util from (py, px),
-** then checks if we found all collectibles and at least one exit.
-*/
 int is_path_valid(t_game *game)
 {
     int **visited;

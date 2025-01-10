@@ -52,16 +52,27 @@ void parse_map(char *file, t_game *game)
 
     fd = open(file, O_RDONLY);
     if (fd < 0)
-        return ;
+        return;
     read_map_lines(fd, &game->map);
     close(fd);
+
+    if (game->map.height == 0)
+        error_exit("Map is empty.");
+
     game->map.width = (int)ft_strlen(game->map.grid[0]);
     row = -1;
     while (++row < game->map.height)
     {
         col = -1;
         while (++col < game->map.width)
+        {
             count_items(game->map.grid[row][col], &game->map);
+            if (game->map.grid[row][col] == 'P')
+            {
+                game->px = col;
+                game->py = row;
+            }
+        }
     }
 }
 
