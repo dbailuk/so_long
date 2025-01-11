@@ -6,7 +6,7 @@
 /*   By: dbailuk <dbailuk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:33:22 by dbailuk           #+#    #+#             */
-/*   Updated: 2025/01/11 16:14:40 by dbailuk          ###   ########.fr       */
+/*   Updated: 2025/01/11 17:04:17 by dbailuk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	put_tile(t_game *g, void *tex, int x, int y)
 {
-	mlx_put_image_to_window(g->mlx, g->win, tex, x * 32, y * 32);
+	mlx_put_image_to_window(g->mlx, g->win, tex, x * IMG_W, y * IMG_H);
 }
 
 void	render_map(t_game *game)
@@ -34,8 +34,13 @@ void	render_map(t_game *game)
 				put_tile(game, game->tex_floor, x, y);
 			if (game->map.grid[y][x] == 'C')
 				put_tile(game, game->tex_collect, x, y);
-			if (game->map.grid[y][x] == 'E' && game->map.count_c == 0)
-				put_tile(game, game->tex_exit, x, y);
+			if (game->map.grid[y][x] == 'E')
+			{
+				if(game->map.count_c > 0)
+					put_tile(game, game->tex_exit_closed, x, y);
+				else
+					put_tile(game, game->tex_exit_open, x, y);
+			}
 			x++;
 		}
 		y++;

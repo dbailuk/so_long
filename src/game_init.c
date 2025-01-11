@@ -6,7 +6,7 @@
 /*   By: dbailuk <dbailuk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:33:48 by dbailuk           #+#    #+#             */
-/*   Updated: 2025/01/11 14:36:08 by dbailuk          ###   ########.fr       */
+/*   Updated: 2025/01/11 17:08:57 by dbailuk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,11 @@ static void	load_textures(t_game *game)
 			"textures/collect.xpm", &w, &h);
 	if (!game->tex_collect)
 		error_exit("Failed to load textures/collect.xpm");
-	game->tex_exit = mlx_xpm_file_to_image(game->mlx,
-			"textures/exit.xpm", &w, &h);
-	if (!game->tex_exit)
+	game->tex_exit_closed = mlx_xpm_file_to_image(game->mlx,
+			"textures/exit_closed.xpm", &w, &h);
+	game->tex_exit_open = mlx_xpm_file_to_image(game->mlx,
+			"textures/exit_open.xpm", &w, &h);
+	if (!game->tex_exit_closed || !game->tex_exit_open)
 		error_exit("Failed to load textures/exit.xpm");
 }
 

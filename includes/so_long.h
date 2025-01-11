@@ -50,11 +50,12 @@ typedef struct s_game
 {
 	void	*mlx;         // MLX instance
 	void	*win;         // window
-	void    *tex_wall;    // example texture pointers
-    void    *tex_floor;
-    void    *tex_player;
-    void    *tex_collect;
-    void    *tex_exit;
+	void	*tex_wall;    // example texture pointers
+    void	*tex_floor;
+    void	*tex_player;
+    void	*tex_collect;
+    void	*tex_exit_closed;
+	void	*tex_exit_open;
     int     moves;        // move counter
     int     px;           // player x (in grid coords)
     int     py;           // player y (in grid coords)
