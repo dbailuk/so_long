@@ -1,5 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dbailuk <dbailuk@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/11 17:33:36 by dbailuk           #+#    #+#             */
+/*   Updated: 2025/01/11 17:36:40 by dbailuk          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
-#define SO_LONG_H
+# define SO_LONG_H
 
 # define IMG_W 32
 # define IMG_H 32
@@ -38,50 +50,44 @@ typedef struct s_path
 
 typedef struct s_map
 {
-    char    **grid;       // 2D array of map chars
-    int     width;        // map width
-    int     height;       // map height
-    int     count_c;      // collectible count
-    int     count_e;      // exit count
-    int     count_p;      // player count
-}   t_map;
+	char	**grid;
+	int		width;
+	int		height;
+	int		count_c;
+	int		count_e;
+	int		count_p;
+}	t_map;
 
 typedef struct s_game
 {
-	void	*mlx;         // MLX instance
-	void	*win;         // window
-	void	*tex_wall;    // example texture pointers
-    void	*tex_floor;
-    void	*tex_player;
-    void	*tex_collect;
-    void	*tex_exit_closed;
+	void	*mlx;
+	void	*win;
+	void	*tex_wall;
+	void	*tex_floor;
+	void	*tex_player;
+	void	*tex_collect;
+	void	*tex_exit_closed;
 	void	*tex_exit_open;
-    int     moves;        // move counter
-    int     px;           // player x (in grid coords)
-    int     py;           // player y (in grid coords)
-    t_map   map;          // embedded map struct
-}   t_game;
+	int		moves;
+	int		px;
+	int		py;
+	t_map	map;
+}	t_game;
 
 // main.c
-int	main(int argc, char **argv);
-void error_exit(char *msg);
-
+int		main(int argc, char **argv);
+void	error_exit(char *msg);
 // map_parse.c
 void	parse_map(char *file, t_game *game);
-
 // map_check.c
 void	check_map(t_game *game);
-
 // path_check.c
-int	is_path_valid(t_game *game);
-
+int		is_path_valid(t_game *game);
 // game_init.c
 void	init_game(t_game *game);
-
 // game_loop.c
-int	handle_keypress(int keycode, t_game *game);
-int	close_game(t_game *game);
-
+int		handle_keypress(int keycode, t_game *game);
+int		close_game(t_game *game);
 // render.c
 void	render_map(t_game *game);
 

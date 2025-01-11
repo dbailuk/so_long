@@ -6,7 +6,7 @@
 /*   By: dbailuk <dbailuk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:33:22 by dbailuk           #+#    #+#             */
-/*   Updated: 2025/01/11 17:04:17 by dbailuk          ###   ########.fr       */
+/*   Updated: 2025/01/11 17:37:11 by dbailuk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	render_map(t_game *game)
 				put_tile(game, game->tex_collect, x, y);
 			if (game->map.grid[y][x] == 'E')
 			{
-				if(game->map.count_c > 0)
+				if (game->map.count_c > 0)
 					put_tile(game, game->tex_exit_closed, x, y);
 				else
 					put_tile(game, game->tex_exit_open, x, y);
