@@ -6,7 +6,7 @@
 /*   By: dbailuk <dbailuk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:33:32 by dbailuk           #+#    #+#             */
-/*   Updated: 2025/01/10 14:36:57 by dbailuk          ###   ########.fr       */
+/*   Updated: 2025/01/11 16:19:46 by dbailuk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static void	read_map_lines(int fd, t_map *map)
 	char	*line;
 	char	**tmp;
 	int		i;
+	int		current_width;
 
 	map->height = 0;
 	map->grid = NULL;
@@ -44,9 +45,16 @@ static void	read_map_lines(int fd, t_map *map)
 	while (line)
 	{
 		strip_newline(line);
+		current_width = ft_strlen(line);
+		if (map->height == 0)
+			map->width = current_width;
+		else if (current_width != map->width)
+			error_exit("Map is not rectangular.");
 		i = 0;
 		tmp = map->grid;
 		map->grid = ft_calloc(map->height + 2, sizeof(char *));
+		if (!map->grid)
+			error_exit("Memory allocation failed while reading map.");
 		while (i < map->height)
 		{
 			map->grid[i] = tmp[i];

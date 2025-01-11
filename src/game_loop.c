@@ -6,7 +6,7 @@
 /*   By: dbailuk <dbailuk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:33:44 by dbailuk           #+#    #+#             */
-/*   Updated: 2025/01/10 13:54:01 by dbailuk          ###   ########.fr       */
+/*   Updated: 2025/01/11 16:13:05 by dbailuk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ int	close_game(t_game *game)
 		mlx_destroy_image(game->mlx, game->tex_collect);
 	if (game->tex_exit)
 		mlx_destroy_image(game->mlx, game->tex_exit);
-	mlx_destroy_window(game->mlx, game->win);
+	if (game->win)
+		mlx_destroy_window(game->mlx, game->win);
+	mlx_destroy_display(game->mlx);
+	free(game->mlx);
 	exit(EXIT_SUCCESS);
 	return (0);
 }
@@ -40,7 +43,10 @@ static void	move_player(t_game *g, int nx, int ny)
 	if (g->map.grid[ny][nx] == '1')
 		return ;
 	if (g->map.grid[ny][nx] == 'C')
+	{
 		g->map.count_c--;
+		g->map.grid[ny][nx] = '0';
+	}
 	g->px = nx;
 	g->py = ny;
 	g->moves++;
