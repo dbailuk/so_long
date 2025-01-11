@@ -6,7 +6,7 @@
 /*   By: dbailuk <dbailuk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:33:48 by dbailuk           #+#    #+#             */
-/*   Updated: 2025/01/10 13:42:40 by dbailuk          ###   ########.fr       */
+/*   Updated: 2025/01/11 14:36:08 by dbailuk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	init_game(t_game *game)
 	if (!game->mlx)
 		error_exit("Failed to init MLX.");
 	game->win = mlx_new_window(game->mlx,
-			game->map.width * 64, game->map.height * 64, "so_long");
+			game->map.width * IMG_W, game->map.height * IMG_H, "so_long");
 	if (!game->win)
 		error_exit("Failed to create a window.");
 	load_textures(game);
