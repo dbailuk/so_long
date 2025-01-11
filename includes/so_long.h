@@ -6,7 +6,7 @@
 /*   By: dbailuk <dbailuk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 17:33:36 by dbailuk           #+#    #+#             */
-/*   Updated: 2025/01/11 17:36:40 by dbailuk          ###   ########.fr       */
+/*   Updated: 2025/01/11 18:34:26 by dbailuk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,6 @@
 # define IMG_W 32
 # define IMG_H 32
 
-// Keys for linux
-# define KEY_UP		65362
-# define KEY_DOWN	65364
-# define KEY_LEFT	65361
-# define KEY_RIGHT	65363
 # define KEY_W 119
 # define KEY_A 97
 # define KEY_S 115
@@ -90,5 +85,6 @@ int		handle_keypress(int keycode, t_game *game);
 int		close_game(t_game *game);
 // render.c
 void	render_map(t_game *game);
+int		handle_expose(t_game *game);
 
 #endif
