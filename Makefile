@@ -29,7 +29,6 @@ LIBFT       = $(LIBFT_DIR)/libft.a
 FT_PRINTF   = $(PRINTF_DIR)/libftprintf.a
 MLX         = $(MLX_DIR)/libmlx.a
 
-# On Linux, often you need: -lXext -lX11 -lm
 MLX_FLAGS   = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 
 all: $(NAME)
