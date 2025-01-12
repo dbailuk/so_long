@@ -29,14 +29,15 @@ LIBFT       = $(LIBFT_DIR)/libft.a
 FT_PRINTF   = $(PRINTF_DIR)/libftprintf.a
 MLX         = $(MLX_DIR)/libmlx.a
 
-MLX_FLAGS   = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
+# MLX Flags for Linux
+MLX_FLAGS   = -L$(MLX_DIR) -lmlx -L/usr/X11/lib -lXext -lX11 -lm
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	@$(MAKE) -C $(LIBFT_DIR)       # Build libft + GNL
 	@$(MAKE) -C $(PRINTF_DIR)      # Build ft_printf
-	@$(MAKE) -C $(MLX_DIR)         # Build MiniLibX if needed
+	@$(MAKE) -C $(MLX_DIR)         # Build MiniLibX
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT) $(FT_PRINTF) $(MLX_FLAGS)
 	@echo "Compiled $(NAME)"
 
