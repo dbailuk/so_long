@@ -6,7 +6,7 @@
 /*   By: dbailuk <dbailuk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:33:44 by dbailuk           #+#    #+#             */
-/*   Updated: 2025/01/11 17:14:48 by dbailuk          ###   ########.fr       */
+/*   Updated: 2025/01/12 14:55:49 by dbailuk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,10 @@ static void	move_player(t_game *g, int nx, int ny)
 	g->moves++;
 	ft_printf("Moves: %d\n", g->moves);
 	if (g->map.grid[ny][nx] == 'E' && g->map.count_c == 0)
+	{
+		ft_printf("Congratulations! You won!");
 		close_game(g);
+	}
 }
 
 int	handle_keypress(int keycode, t_game *game)
