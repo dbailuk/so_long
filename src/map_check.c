@@ -6,11 +6,21 @@
 /*   By: dbailuk <dbailuk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:33:36 by dbailuk           #+#    #+#             */
-/*   Updated: 2025/01/10 13:33:37 by dbailuk          ###   ########.fr       */
+/*   Updated: 2025/01/12 13:22:38 by dbailuk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+void	count_items(char c, t_map *map)
+{
+	if (c == 'C')
+		map->count_c++;
+	else if (c == 'E')
+		map->count_e++;
+	else if (c == 'P')
+		map->count_p++;
+}
 
 static void	check_walls(t_map *map)
 {

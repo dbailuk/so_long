@@ -6,7 +6,7 @@
 /*   By: dbailuk <dbailuk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 17:33:36 by dbailuk           #+#    #+#             */
-/*   Updated: 2025/01/11 18:34:26 by dbailuk          ###   ########.fr       */
+/*   Updated: 2025/01/12 13:23:31 by dbailuk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	error_exit(char *msg);
 void	parse_map(char *file, t_game *game);
 // map_check.c
 void	check_map(t_game *game);
+void	count_items(char c, t_map *map);
 // path_check.c
 int		is_path_valid(t_game *game);
 // game_init.c
@@ -85,6 +86,5 @@ int		handle_keypress(int keycode, t_game *game);
 int		close_game(t_game *game);
 // render.c
 void	render_map(t_game *game);
-int		handle_expose(t_game *game);
 
 #endif

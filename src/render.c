@@ -6,7 +6,7 @@
 /*   By: dbailuk <dbailuk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:33:22 by dbailuk           #+#    #+#             */
-/*   Updated: 2025/01/11 18:47:41 by dbailuk          ###   ########.fr       */
+/*   Updated: 2025/01/12 13:16:17 by dbailuk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,19 @@
 static void	put_tile(t_game *g, void *tex, int x, int y)
 {
 	mlx_put_image_to_window(g->mlx, g->win, tex, x * IMG_W, y * IMG_H);
+}
+
+static void	render_extra_tiles(t_game *game, int x, int y)
+{
+	if (game->map.grid[y][x] == 'C')
+		put_tile(game, game->tex_collect, x, y);
+	if (game->map.grid[y][x] == 'E')
+	{
+		if (game->map.count_c > 0)
+			put_tile(game, game->tex_exit_closed, x, y);
+		else
+			put_tile(game, game->tex_exit_open, x, y);
+	}
 }
 
 void	render_map(t_game *game)
@@ -32,15 +45,7 @@ void	render_map(t_game *game)
 				put_tile(game, game->tex_wall, x, y);
 			else
 				put_tile(game, game->tex_floor, x, y);
-			if (game->map.grid[y][x] == 'C')
-				put_tile(game, game->tex_collect, x, y);
-			if (game->map.grid[y][x] == 'E')
-			{
-				if (game->map.count_c > 0)
-					put_tile(game, game->tex_exit_closed, x, y);
-				else
-					put_tile(game, game->tex_exit_open, x, y);
-			}
+			render_extra_tiles(game, x, y);
 			x++;
 		}
 		y++;
